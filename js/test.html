@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery入門</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>項目１</th>
+        <th>項目２</th>
+        <th>項目３</th>
+      </tr>
+      <tr>
+        <td>リスト</td>
+        <td>リスト</td>
+        <td>リスト</td>
+      </tr>
+      <tr>
+        <td>リスト</td>
+        <td>リスト</td>
+        <td>リスト</td>
+      </tr>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+      $(function(){
+        $("table").find("td").data("count",0)
+        // "td"タグ全てにkeyとvalueの属性を追加
+        // 属性名はcount 値は0　
+        //objectみたいな感じで属性名(key)で値(ここでは0)が呼べる
+
+        .on("click",function(){
+          //クリックのイベントを設定
+
+          let $this = $(this);
+          //$thisに("table").find("td")を代入＝$thisに"tdを代入"
+
+          let number = $this.data("count") + 1;
+          //numberに"td"に.dataメソッドを使い、
+          //keyであるcountの値に１を足している
+
+          $this
+          .data("count",number)
+          //$thisにkey:count,value:numberを追加
+          .text(number);
+        });
+      });
+    </script>
+  </body>
+</html>

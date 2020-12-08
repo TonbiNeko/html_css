@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DOM操作入門</title>
+</head>
+<body>
+  <form>
+    <input type="text" name="" id="name"/>
+    <input value="追加" id="btn"/>
+  </form>
+  <h3>TODOリスト</h3>
+  <ul id="lists"></ul>
+  <button type="button" id="deleteButton">削除する</button>
+  <script>
+　　  const lists = document.getElementById("lists")
+　　  //listsの中に<ul>要素を取得
+　　  const target = document.getElementById("btn");
+　　  //targetの中に<inbut 追加>を取得
+　　  target.addEventListener("click", function(){
+  　　  //target(追加)にイベントを追加、クリックすると関数が実行される
+  　　  const form = document.getElementById("name");
+  　　　//formの中に<inbut 空のボックス>を取得
+  　　  const list = document.createElement("li");
+  　　　//listの中にli要素を新しく作成
+       if(form.value == ""){
+         window.alert("TODOを入力してください。")
+       }
+       else{
+         list.textContent = form.value;
+       　　 //.textContentメソッドで、新しく作った<li>の中に入るテキストを取得
+       　　 //その中にform.value(空のボックスの中に入る値)を代入
+      　　  //.valueは.前のノードの値を取得できる
+    　　    //.textContentメソッドは要素のテキストの内容を取得する     　　
+       　　 //= <li>入力する値</li>
+           lists.appendChild(list);
+   　　    //lists(<ul>親要素)に子要素としてlist(<li>入力する値</li>)が入る     　　   
+     　　  //""空文字列を代入し、フォームの内容を書き換えることができる
+       }
+  },false);
+
+    const deleteButton = document.getElementById("deleteButton");
+    deleteButton.addEventListener("click", function(){
+      while(lists.firstChild){
+        //listsには<ul>が入ってる
+        //それに.fistChildメソッドが行われ、子要素の一番上の子を取得している
+        //while loop 条件式(list.firstChild) trueの限り処理が行われる
+        //きっと子供がいなくなるとundefinedだからループが終わる？
+      lists.removeChild(lists.firstChild);
+      　//処理は上の子を消す事
+     }
+  },false);
+  </script>
+</body>
+</html>
